@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # libs
     'rest_framework',
+    'rangefilter',
 
     # apps
     'images'
