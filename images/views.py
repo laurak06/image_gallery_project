@@ -1,5 +1,8 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+
+from .filters import ImageItemFilter
 from .models import ImageItem
 from .serializers import ImageItemSerializer, ImageItemListSerializer
 from .services.cloudinary_service import upload_image_to_cloudinary, delete_image_from_cloudinary
@@ -14,6 +17,9 @@ class ImageItemViewSet(viewsets.ModelViewSet):
     - PATCH /api/images/<id>/  -> изменение данных об изображении
     """
     queryset = ImageItem.objects.all().order_by('-uploaded_at')
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    filterset_class = ImageItemFilter
+    search_fields = ['title', 'description']  # поиск по названию и описанию
 
     def get_serializer_class(self):
         if self.action == 'list':

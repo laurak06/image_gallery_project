@@ -3,6 +3,7 @@ certifi==2025.10.5
 cloudinary==1.44.1
 Django==5.2.7
 django-admin-rangefilter==0.13.3
+django-filter==25.2
 djangorestframework==3.16.1
 pillow==12.0.0
 psycopg2-binary==2.9.11
